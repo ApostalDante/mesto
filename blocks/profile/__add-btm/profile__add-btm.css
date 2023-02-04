@@ -1,0 +1,30 @@
+.profile__add-btm {
+  background-image: url("../../../img/profile__add-btm.svg");
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: 22px 22px;
+  padding: 0;
+  width: 150px;
+  height: 50px;
+  background-color: transparent;
+  border: 1px solid #ffffff;
+  cursor: pointer;
+  margin: auto 0 auto auto;
+}
+
+.profile__add-btm:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 690px) {
+  .profile__add-btm {
+    width: 282px;
+    margin: 36px auto 0;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .profile__add-btm {
+    background-size: 16px 16px;
+  }
+}

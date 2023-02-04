@@ -1,0 +1,24 @@
+.profile__user-myself {
+  max-width: 336px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 0;
+}
+
+@media screen and (max-width: 690px) {
+  .profile__user-myself {
+    margin-top: 14px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .profile__user-myself {
+    max-width: 282px;
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
