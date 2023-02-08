@@ -1,4 +1,4 @@
-.ppofile__user-name {
+.profile__user-name {
   max-width: 294px;
   font-style: normal;
   font-weight: 500;
@@ -11,7 +11,7 @@
 }
 
 @media screen and (max-width: 400px) {
-  .ppofile__user-name {
+  .profile__user-name {
     max-width: 189px;
     font-size: 27px;
     line-height: 36px;
