@@ -44,7 +44,7 @@ function changeValuePlaceholder(str) {
 
 function getValuePlaceholder() {
   let userName = document.querySelector(".form__user-name");
-  userName.placeholder = document.querySelector(".ppofile__user-name").textContent;
+  userName.placeholder = document.querySelector(".profile__user-name").textContent;
   let userMysel = document.querySelector(".form__user-myself");
   userMysel.placeholder = document.querySelector(".profile__user-myself").textContent;
   cleanValueForm();
@@ -55,7 +55,7 @@ function sendingUserForm() {
   let userMyselValue = document.querySelector(".form__user-myself").value;
   if (userNameValue != '' && userMyselValue != '') {
     if (userNameValue.length > 2 && userMyselValue.length > 2) {
-      document.querySelector(".ppofile__user-name").textContent = userNameValue;
+      document.querySelector(".profile__user-name").textContent = userNameValue;
       document.querySelector(".profile__user-myself").textContent = userMyselValue;
       closePopupButtonClick();
     } else {
