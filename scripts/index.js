@@ -2,8 +2,8 @@ const editProfiletButton = document.querySelector('.profile__edit-btm');
 const popup = document.querySelector('.popup');
 const formElement = document.querySelector('.form');
 const closePopupButton = popup.querySelector('.popup__close');
-const userNameForm = document.querySelector('.form__user-name');
-const userMyselForm = document.querySelector('.form__user-myself');
+const userNameForm = document.querySelector('.form__input_type_user-name');
+const userMyselForm = document.querySelector('.form__input_type_user-myself');
 const userNameProfile = document.querySelector('.profile__user-name');
 const userMyselProfile = document.querySelector('.profile__user-myself');
 
