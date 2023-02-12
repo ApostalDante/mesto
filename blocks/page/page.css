@@ -4,5 +4,6 @@
   font-style: normal;
   background-color: #000000;
   max-width: 1280px;
+  min-width: 310px;
   margin: 0 auto;
 }
