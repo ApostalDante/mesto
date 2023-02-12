@@ -1,6 +1,8 @@
 .element__img {
   max-width: 282px;
   max-height: 282px;
-  object-fit: cover;
-  object-position: right top;
+  width: 282px;
+  height: 282px;
+  object-fit: fill;
+  object-position: 50% 505;
 }
