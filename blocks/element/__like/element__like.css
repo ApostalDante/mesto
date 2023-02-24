@@ -3,16 +3,17 @@
   min-height: 19px;
   width: 22px;
   height: 19px;
-  background-image: url("../../../images/like__disabled.svg");
-  cursor: pointer;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background: url("../../../images/like__disabled.svg") 0 0/100% 100% no-repeat;
   border: none;
+  background-color: transparent;
   padding: 0;
   margin: auto 0;
-  background-color: transparent;
+  cursor: pointer;
 }
 .element__like:hover {
   opacity: 0.6;
+}
+
+.element__like_type_active {
+  background: url("../../../images/like__acive.svg") 0 0/100% 100% no-repeat;
 }

@@ -27,62 +27,43 @@
       <button type="button" aria-label="open" class="profile__add-btm">
       </button>
     </section>
-    <section class="elements">
-      <article class="element">
-        <img class="element__img" src="./images/elements-el-1.png" alt="картинка">
-        <div class="element__info">
-          <h2 class="element__text">Карачаевск</h2>
-          <button type="button" aria-label="like" class="element__like"></button>
-        </div>
-      </article>
-      <article class="element">
-        <img class="element__img" src="./images/elements-el-2.png" alt="картинка">
-        <div class="element__info">
-          <h2 class="element__text">Гора Эльбрус</h2>
-          <button type="button" aria-label="like" class="element__like"></button>
-        </div>
-      </article>
-      <article class="element">
-        <img class="element__img" src="./images/elements-el-3.png" alt="картинка">
-        <div class="element__info">
-          <h2 class="element__text">Домбай</h2>
-          <button type="button" aria-label="like" class="element__like"></button>
-        </div>
-      </article>
-      <article class="element">
-        <img class="element__img" src="./images/elements-el-2.png" alt="картинка">
-        <div class="element__info">
-          <h2 class="element__text">Гора Эльбрус</h2>
-          <button type="button" aria-label="like" class="element__like"></button>
-        </div>
-      </article>
-      <article class="element">
-        <img class="element__img" src="./images/elements-el-3.png" alt="картинка">
-        <div class="element__info">
-          <h2 class="element__text">Домбай</h2>
-          <button type="button" aria-label="like" class="element__like"></button>
-        </div>
-      </article>
-      <article class="element">
-        <img class="element__img" src="./images/elements-el-1.png" alt="картинка">
-        <div class="element__info">
-          <h2 class="element__text">Карачаево-Черкесия</h2>
-          <button type="button" aria-label="like" class="element__like"></button>
-        </div>
-      </article>
+    <section class="cards">
+      <section class="elements"></section>
+      <template id="card">
+        <article class="element">
+          <button type="button" aria-label="trash" class="element__trash"></button>
+          <img class="element__img" src="" alt="картинка">
+          <div class="element__info">
+            <h2 class="element__text"></h2>
+            <button type="button" aria-label="like" class="element__like"></button>
+          </div>
+        </article>
+      </template>
+
     </section>
   </main>
   <footer class="footer">
     <p class="footer__copyright">&#169; 2020 Mesto Russia</p>
   </footer>
 
-  <div class="popup">
+  <div class="popup popup_user">
     <div class="popup__container">
       <button type="button" aria-label="close" class="popup__close"></button>
-      <form method="get" class="form" name="user">
+      <form method="get" class="form form__type_user" name="user">
         <h2 class="form__header">Редактировать профиль</h2>
         <input class="form__input form__input_type_user-name" name="user-name" placeholder="" />
         <input class="form__input form__input_type_user-myself" name="user-myself" placeholder="" />
+        <button type="submit" aria-label="save" class="form__save">Сохранить</button>
+      </form>
+    </div>
+  </div>
+  <div class="popup popup_card">
+    <div class="popup__container">
+      <button type="button" aria-label="close" class="popup__close"></button>
+      <form method="get" class="form form__type_card" name="card">
+        <h2 class="form__header">Новое место</h2>
+        <input class="form__input form__input_type_card-name" name="card-name" placeholder="Название" />
+        <input class="form__input form__input_type_card-url" name="card-url" placeholder="Ссылка на картинку" />
         <button type="submit" aria-label="save" class="form__save">Сохранить</button>
       </form>
     </div>
