@@ -127,4 +127,5 @@ formElementUser.addEventListener('submit', setUserFormProfile);
 formElementCard.addEventListener('submit', setCardFormProfile);
 closePopupButtonAll.forEach(btn => btn.addEventListener('click', () => closePopupButtonAllClick()));
 
+// плавность 
 
