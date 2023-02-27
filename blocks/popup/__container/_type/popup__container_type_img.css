@@ -1,5 +1,5 @@
 .popup__container_type_img {
-  max-width: 816px;
-  max-height: 540px;
+  max-width: 75vw;
+  max-height: 75vh;
   box-shadow: none;
 }

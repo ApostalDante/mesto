@@ -5,6 +5,6 @@
   min-height: 282px;
   width: 282px;
   height: 282px;
-  object-fit: fill;
+  object-fit: cover;
   object-position: 50% 50%;
 }
