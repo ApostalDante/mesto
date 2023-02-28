@@ -15,6 +15,8 @@ const cardUrlInput = document.querySelector('.form__input_type_card-url');
 const cardElements = document.querySelector('.cards');
 const elementContainer = cardElements.querySelector('.elements');
 const popupImg = document.querySelector('.popup_type_img');
+const imgInPopup = document.querySelector('.popup__image');
+const titleInPopup = document.querySelector('.popup__title');
 
 function setUserFormValue() {
   userNameForm.value = userNameProfile.textContent;
@@ -44,17 +46,11 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
 
-function closePopupButtonAllClick() {
-  const popup = document.querySelector('.popup_opened');
-  closePopup(popup);
-}
-
-
 function setUserFormProfile(evt) {
   evt.preventDefault();
   userNameProfile.textContent = userNameForm.value;
   userMyselProfile.textContent = userMyselForm.value;
-  closePopupButtonAllClick();
+  closePopup(popupUser);
 }
 
 function setCardFormProfile(evt) {
@@ -62,7 +58,7 @@ function setCardFormProfile(evt) {
   addCard(cardNameInput.value, cardUrlInput.value);
   cleanFormValue(cardNameInput);
   cleanFormValue(cardUrlInput);
-  closePopupButtonAllClick();
+  closePopup(popupCard);
 }
 
 function addCard(cardName, cardUrl) {
@@ -74,7 +70,8 @@ function addCard(cardName, cardUrl) {
   const likeButton = cardElement.querySelector('.element__like');
   const imageClick = cardElement.querySelector('.element__img');
   cardElement.querySelector('.element__text').textContent = cardName;
-  cardElement.querySelector('.element__img').src = cardUrl;
+  imageClick.src = cardUrl;
+  imageClick.alt = cardName;
   likeButton.addEventListener('click', likeActive);
   trashButton.addEventListener('click', deleteCart);
   imageClick.addEventListener('click', () => openPopupImg(cardName, cardUrl));
@@ -98,16 +95,10 @@ function cleanFormValue(input) {
 }
 
 function openPopupImg(title, src) {
-  const imgInPopup = document.querySelector('.popup__image');
-  const titleInPopup = document.querySelector('.popup__title');
   imgInPopup.src = src;
-  imgInPopup.alt = 'картинка';
+  imgInPopup.alt = title;
   titleInPopup.textContent = title;
-  toggleOpenPopupImg();
-}
-
-function toggleOpenPopupImg() {
-  popupImg.classList.toggle('popup_opened');
+  openPopup(popupImg);
 }
 
 initialCards.forEach(obg => addCard(obg.name, obg.link));
@@ -115,5 +106,4 @@ editProfiletButton.addEventListener('click', () => openPopupUser(popupUser));
 addCardButton.addEventListener('click', () => openPopupCard(popupCard));
 formElementUser.addEventListener('submit', setUserFormProfile);
 formElementCard.addEventListener('submit', setCardFormProfile);
-closePopupButtonAll.forEach(btn => btn.addEventListener('click', () => closePopupButtonAllClick()));
-
+closePopupButtonAll.forEach(btn => btn.addEventListener('click', (evt) => closePopup(evt.target.closest('.popup_opened'))));
