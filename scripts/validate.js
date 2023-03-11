@@ -6,8 +6,6 @@ function hideInputError(formElement, inputElement, options) {
 };
 
 function showInputError(formElement, inputElement, errorMessage, options) {
-  console.log(formElement)
-  // console.log(inputElement)
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add(options.formInputTypeClass);
   errorElement.textContent = errorMessage;
@@ -63,8 +61,6 @@ function toggleButtonState(inputList, buttonElement, options) {
   }
 }
 
-//для переноса вызова enableValidation в файл с валидацией (validate.js). 
-//константа options должна находиться в том-же файле 
 const options = {
   formSelector: '.form',
   formSetSelector: '.form__set',
@@ -79,11 +75,12 @@ const options = {
 enableValidation(options);
 
 function closetInputError(options) {
-  const allForm = Array.from(document.querySelectorAll(options.formSetSelector));
-  allForm.forEach(form => {
-    console.log(form)
-    hideInputError(allForm, form, options)
+  const formList = Array.from(document.querySelectorAll(options.formSetSelector));
+  formList.forEach(el => {
+    const errorInput = document.querySelector('.form__input_type_error');
+    const erorrSpan = document.querySelector('.form__input-error_active');
+    errorInput.classList.remove('form__input_type_error');
+    erorrSpan.classList.remove('form__input-error_active');
   })
 }
 
-//closetInputError()

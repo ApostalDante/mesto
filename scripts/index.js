@@ -32,13 +32,11 @@ function cleanCardFormValue() {
 function openPopupUser(popup) {
   openPopup(popup);
   setUserFormValue();
-  // enableValidation(options);
 }
 
 function openPopupCard(popup) {
   openPopup(popup);
   cleanCardFormValue();
-  //enableValidation(options);
 }
 
 function openPopup(popup) {
@@ -106,30 +104,13 @@ function openPopupImg(title, src) {
   openPopup(popupImg);
 }
 
-function closeInputError() {
-  const errorInput = document.querySelector('.form__input_type_error');
-  const erorrSpan = document.querySelector('.form__input-error_active');
-  errorInput.classList.remove('form__input_type_error');
-  erorrSpan.classList.remove('form__input-error_active');
-}
-
 function doSomething(esc) {
   if (esc.key === 'Escape') {
     const popupOpen = document.querySelector('.popup_opened');
     closePopup(popupOpen);
   }
 };
-/*
-const options = {
-  formSelector: '.form',
-  formSetSelector: '.form__set',
-  formInputSelector: '.form__input',
-  formSaveSelector: '.form__save',
-  formInputTypeClass: 'form__input_type_error',
-  formInputErrorClass: 'form__input-error_active',
-  buttonInactiveClass: 'form__save_disablet',
-}
-*/
+
 
 initialCards.forEach(obg => pushElementContainer(addCard(obg.name, obg.link)));
 buttonEditProfile.addEventListener('click', () => openPopupUser(popupUser));
@@ -138,13 +119,12 @@ formElementUser.addEventListener('submit', setUserFormProfile);
 formElementCard.addEventListener('submit', setCardFormProfile);
 buttonAllClosePopup.forEach(btn => btn.addEventListener('click', (evt) => {
   closePopup(evt.target.closest('.popup_opened'));
-  closetInputError(options)
-  //closeInputError();
+  closetInputError(options);
 }));
 popup.forEach(btn => btn.addEventListener('click', (evt) => {
   if (evt.target === evt.currentTarget) {
     closePopup(evt.target.closest('.popup_opened'));
-    // closeInputError();
+    closetInputError(options);
   }
 }));
 
