@@ -6,6 +6,8 @@ function hideInputError(formElement, inputElement, options) {
 };
 
 function showInputError(formElement, inputElement, errorMessage, options) {
+  console.log(formElement)
+  // console.log(inputElement)
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add(options.formInputTypeClass);
   errorElement.textContent = errorMessage;
@@ -53,11 +55,35 @@ function hasInvalidInput(inputList) {
 
 function toggleButtonState(inputList, buttonElement, options) {
   if (hasInvalidInput(inputList)) {
-    buttonElement.setAttribute('disablet', 'true');
+    buttonElement.setAttribute('disabled', 'true');
     buttonElement.classList.add(options.buttonInactiveClass);
   } else {
-    buttonElement.removeAttribute('disablet');
+    buttonElement.removeAttribute('disabled');
     buttonElement.classList.remove(options.buttonInactiveClass);
   }
 }
 
+//для переноса вызова enableValidation в файл с валидацией (validate.js). 
+//константа options должна находиться в том-же файле 
+const options = {
+  formSelector: '.form',
+  formSetSelector: '.form__set',
+  formInputSelector: '.form__input',
+  formSaveSelector: '.form__save',
+  formInputTypeClass: 'form__input_type_error',
+  formInputErrorClass: 'form__input-error_active',
+  buttonInactiveClass: 'form__save_disablet',
+}
+
+
+enableValidation(options);
+
+function closetInputError(options) {
+  const allForm = Array.from(document.querySelectorAll(options.formSetSelector));
+  allForm.forEach(form => {
+    console.log(form)
+    hideInputError(allForm, form, options)
+  })
+}
+
+//closetInputError()

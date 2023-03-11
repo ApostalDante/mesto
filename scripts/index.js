@@ -1,12 +1,12 @@
 const page = document.querySelector('.page');
-const editProfiletButton = document.querySelector('.profile__edit-btm');
-const addCardButton = document.querySelector('.profile__add-btm');
+const buttonEditProfile = document.querySelector('.profile__edit-btm');
+const buttonAddCard = document.querySelector('.profile__add-btm');
 const popup = document.querySelectorAll('.popup');
 const popupUser = document.querySelector('.popup_type_user');
 const popupCard = document.querySelector('.popup_type_card');
 const formElementUser = document.querySelector('.form_type_user');
 const formElementCard = document.querySelector('.form_type_card');
-const closePopupButtonAll = page.querySelectorAll('.popup__close');
+const buttonAllClosePopup = page.querySelectorAll('.popup__close');
 const userNameForm = document.querySelector('.form__input_type_user-name');
 const userMyselForm = document.querySelector('.form__input_type_user-myself');
 const userNameProfile = document.querySelector('.profile__user-name');
@@ -32,21 +32,23 @@ function cleanCardFormValue() {
 function openPopupUser(popup) {
   openPopup(popup);
   setUserFormValue();
-  enableValidation(options);
+  // enableValidation(options);
 }
 
 function openPopupCard(popup) {
   openPopup(popup);
   cleanCardFormValue();
-  enableValidation(options);
+  //enableValidation(options);
 }
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', doSomething);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', doSomething);
 }
 
 function setUserFormProfile(evt) {
@@ -54,14 +56,16 @@ function setUserFormProfile(evt) {
   userNameProfile.textContent = userNameForm.value;
   userMyselProfile.textContent = userMyselForm.value;
   closePopup(popupUser);
+  evt.target.reset();
 }
 
 function setCardFormProfile(evt) {
   evt.preventDefault();
-  addCard(cardNameInput.value, cardUrlInput.value);
+  pushElementContainer(addCard(cardNameInput.value, cardUrlInput.value));
   cleanFormValue(cardNameInput);
   cleanFormValue(cardUrlInput);
   closePopup(popupCard);
+  evt.target.reset();
 }
 
 function addCard(cardName, cardUrl) {
@@ -74,16 +78,16 @@ function addCard(cardName, cardUrl) {
   imageClick.src = cardUrl;
   imageClick.alt = cardName;
   likeButton.addEventListener('click', likeActive);
-  trashButton.addEventListener('click', deleteCart);
+  trashButton.addEventListener('click', handleDeleteButtonClick);
   imageClick.addEventListener('click', () => openPopupImg(cardName, cardUrl));
-  pushElementContainer(cardElement);
+  return cardElement;
 }
 
 function pushElementContainer(element) {
   elementContainer.prepend(element);
 }
 
-function deleteCart(evt) {
+function handleDeleteButtonClick(evt) {
   evt.target.closest('.element').remove();
 }
 
@@ -109,6 +113,13 @@ function closeInputError() {
   erorrSpan.classList.remove('form__input-error_active');
 }
 
+function doSomething(esc) {
+  if (esc.key === 'Escape') {
+    const popupOpen = document.querySelector('.popup_opened');
+    closePopup(popupOpen);
+  }
+};
+/*
 const options = {
   formSelector: '.form',
   formSetSelector: '.form__set',
@@ -118,30 +129,24 @@ const options = {
   formInputErrorClass: 'form__input-error_active',
   buttonInactiveClass: 'form__save_disablet',
 }
+*/
 
-
-initialCards.forEach(obg => addCard(obg.name, obg.link));
-editProfiletButton.addEventListener('click', () => openPopupUser(popupUser));
-addCardButton.addEventListener('click', () => openPopupCard(popupCard));
+initialCards.forEach(obg => pushElementContainer(addCard(obg.name, obg.link)));
+buttonEditProfile.addEventListener('click', () => openPopupUser(popupUser));
+buttonAddCard.addEventListener('click', () => openPopupCard(popupCard));
 formElementUser.addEventListener('submit', setUserFormProfile);
 formElementCard.addEventListener('submit', setCardFormProfile);
-closePopupButtonAll.forEach(btn => btn.addEventListener('click', (evt) => {
+buttonAllClosePopup.forEach(btn => btn.addEventListener('click', (evt) => {
   closePopup(evt.target.closest('.popup_opened'));
-  closeInputError();
+  closetInputError(options)
+  //closeInputError();
 }));
 popup.forEach(btn => btn.addEventListener('click', (evt) => {
   if (evt.target === evt.currentTarget) {
     closePopup(evt.target.closest('.popup_opened'));
-    closeInputError();
+    // closeInputError();
   }
 }));
-document.addEventListener('keydown', function (esc) {
-  if (esc.key === 'Escape') {
-    popup.forEach(el => {
-      if (el.closest('.popup_opened')) {
-        closePopup(el);
-        closeInputError();
-      }
-    })
-  }
-});
+
+
+
