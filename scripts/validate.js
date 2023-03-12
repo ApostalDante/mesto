@@ -73,15 +73,15 @@ const options = {
 }
 
 function closetInputError(options) {
-  const formSpanError = Array.from(document.querySelectorAll(options.formSpanErorClass));
   const formInputError = Array.from(document.querySelectorAll(options.formInputSelector))
-  formSpanError.forEach(el => {
-    if (el.classList.contains(options.formInputErrorClass)) {
-      el.classList.remove(options.formInputErrorClass);
-    }
-  })
   formInputError.forEach(el => {
     if (el.classList.contains(options.formInputTypeClass)) {
+      const formSpanError = Array.from(document.querySelectorAll(options.formSpanErorClass));
+      formSpanError.forEach(el => {
+        if (el.classList.contains(options.formInputErrorClass)) {
+          el.classList.remove(options.formInputErrorClass);
+        }
+      })
       el.classList.remove(options.formInputTypeClass);
     }
   })
