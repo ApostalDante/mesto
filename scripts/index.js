@@ -32,21 +32,23 @@ function cleanCardFormValue() {
 function openPopupUser(popup) {
   openPopup(popup);
   setUserFormValue();
+  closetInputError(options);
 }
 
 function openPopupCard(popup) {
   openPopup(popup);
   cleanCardFormValue();
+  closetInputError(options);
 }
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  document.addEventListener('keydown', doSomething);
+  document.addEventListener('keydown', handleEscClose);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', doSomething);
+  document.removeEventListener('keydown', handleEscClose);
 }
 
 function setUserFormProfile(evt) {
@@ -59,14 +61,14 @@ function setUserFormProfile(evt) {
 
 function setCardFormProfile(evt) {
   evt.preventDefault();
-  pushElementContainer(addCard(cardNameInput.value, cardUrlInput.value));
+  pushElementContainer(createCard(cardNameInput.value, cardUrlInput.value));
   cleanFormValue(cardNameInput);
   cleanFormValue(cardUrlInput);
   closePopup(popupCard);
   evt.target.reset();
 }
 
-function addCard(cardName, cardUrl) {
+function createCard(cardName, cardUrl) {
   const cardTemplate = document.querySelector('#card').content;
   const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
   const trashButton = cardElement.querySelector('.element__trash');
@@ -104,27 +106,25 @@ function openPopupImg(title, src) {
   openPopup(popupImg);
 }
 
-function doSomething(esc) {
-  if (esc.key === 'Escape') {
+function handleEscClose(evt) {
+  if (evt.key === 'Escape') {
     const popupOpen = document.querySelector('.popup_opened');
     closePopup(popupOpen);
   }
 };
 
 
-initialCards.forEach(obg => pushElementContainer(addCard(obg.name, obg.link)));
+initialCards.forEach(obg => pushElementContainer(createCard(obg.name, obg.link)));
 buttonEditProfile.addEventListener('click', () => openPopupUser(popupUser));
 buttonAddCard.addEventListener('click', () => openPopupCard(popupCard));
 formElementUser.addEventListener('submit', setUserFormProfile);
 formElementCard.addEventListener('submit', setCardFormProfile);
 buttonAllClosePopup.forEach(btn => btn.addEventListener('click', (evt) => {
   closePopup(evt.target.closest('.popup_opened'));
-  closetInputError(options);
 }));
 popup.forEach(btn => btn.addEventListener('click', (evt) => {
   if (evt.target === evt.currentTarget) {
     closePopup(evt.target.closest('.popup_opened'));
-    closetInputError(options);
   }
 }));
 

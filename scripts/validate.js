@@ -66,21 +66,25 @@ const options = {
   formSetSelector: '.form__set',
   formInputSelector: '.form__input',
   formSaveSelector: '.form__save',
+  formSpanErorClass: '.form__input-error',
   formInputTypeClass: 'form__input_type_error',
   formInputErrorClass: 'form__input-error_active',
   buttonInactiveClass: 'form__save_disablet',
 }
 
-
-enableValidation(options);
-
 function closetInputError(options) {
-  const formList = Array.from(document.querySelectorAll(options.formSetSelector));
-  formList.forEach(el => {
-    const errorInput = document.querySelector('.form__input_type_error');
-    const erorrSpan = document.querySelector('.form__input-error_active');
-    errorInput.classList.remove('form__input_type_error');
-    erorrSpan.classList.remove('form__input-error_active');
+  const formSpanError = Array.from(document.querySelectorAll(options.formSpanErorClass));
+  const formInputError = Array.from(document.querySelectorAll(options.formInputSelector))
+  formSpanError.forEach(el => {
+    if (el.classList.contains(options.formInputErrorClass)) {
+      el.classList.remove(options.formInputErrorClass);
+    }
+  })
+  formInputError.forEach(el => {
+    if (el.classList.contains(options.formInputTypeClass)) {
+      el.classList.remove(options.formInputTypeClass);
+    }
   })
 }
 
+enableValidation(options);
