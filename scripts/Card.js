@@ -5,20 +5,9 @@ class Card {
     this._cardTemplate = document.querySelector(cardTemplate).content;
     this._cardName = cardObg.name;
     this._cardUrl = cardObg.link;
-  };
-
-  _createCard() {
-    const cardElement = this._cardTemplate.querySelector('.element').cloneNode(true);
-    const trashButton = cardElement.querySelector('.element__trash');
-    const likeButton = cardElement.querySelector('.element__like');
-    const imageClick = cardElement.querySelector('.element__img');
-    cardElement.querySelector('.element__text').textContent = this._cardName;
-    imageClick.src = this._cardUrl;
-    imageClick.alt = this._cardName;
-    likeButton.addEventListener('click', this._likeActive);
-    trashButton.addEventListener('click', this._handleDeleteButtonClick);
-    imageClick.addEventListener('click', () => this._openPopupImg());
-    return cardElement;
+    this._imgInPopup = document.querySelector('.popup__image');
+    this._titleInPopup = document.querySelector('.popup__title');
+    this._popupImg = document.querySelector('.popup_type_img');
   };
 
   _handleDeleteButtonClick(evt) {
@@ -30,18 +19,28 @@ class Card {
   };
 
   _openPopupImg() {
-    const imgInPopup = document.querySelector('.popup__image');
-    const titleInPopup = document.querySelector('.popup__title');
-    const popupImg = document.querySelector('.popup_type_img');
-    imgInPopup.src = this._cardUrl;
-    imgInPopup.alt = this._cardName;
-    titleInPopup.textContent = this._cardName;
-    openPopup(popupImg);
+    this._imgInPopup.src = this._cardUrl;
+    this._imgInPopup.alt = this._cardName;
+    this._titleInPopup.textContent = this._cardName;
+    openPopup(this._popupImg);
   };
 
-  pushElementContainer() {
-    this.elementContainer = document.querySelector('.elements');
-    this.elementContainer.prepend(this._createCard());
+  _setListenersCard() {
+    this._trashButton.addEventListener('click', this._handleDeleteButtonClick);
+    this._likeButton.addEventListener('click', this._likeActive);
+    this._imageClick.addEventListener('click', () => this._openPopupImg());
+  };
+
+  createCard() {
+    this.cardElement = this._cardTemplate.querySelector('.element').cloneNode(true);
+    this._trashButton = this.cardElement.querySelector('.element__trash')
+    this._likeButton = this.cardElement.querySelector('.element__like');
+    this._imageClick = this.cardElement.querySelector('.element__img');
+    this.cardElement.querySelector('.element__text').textContent = this._cardName;
+    this._imageClick.src = this._cardUrl;
+    this._imageClick.alt = this._cardName;
+    this._setListenersCard();
+    return this.cardElement;
   };
 };
 
