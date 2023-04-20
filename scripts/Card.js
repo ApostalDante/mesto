@@ -1,13 +1,9 @@
-import { openPopup } from './index.js';
-
 class Card {
-  constructor(cardObg, cardTemplate) {
+  constructor(cardObg, cardTemplate, handleCardClick) {
     this._cardTemplate = document.querySelector(cardTemplate).content;
     this._cardName = cardObg.name;
     this._cardUrl = cardObg.link;
-    this._imgInPopup = document.querySelector('.popup__image');
-    this._titleInPopup = document.querySelector('.popup__title');
-    this._popupImg = document.querySelector('.popup_type_img');
+    this._handleCardClick = handleCardClick;
   };
 
   _handleDeleteButtonClick(evt) {
@@ -19,10 +15,7 @@ class Card {
   };
 
   _openPopupImg() {
-    this._imgInPopup.src = this._cardUrl;
-    this._imgInPopup.alt = this._cardName;
-    this._titleInPopup.textContent = this._cardName;
-    openPopup(this._popupImg);
+    this._handleCardClick(this._cardUrl, this._cardName);
   };
 
   _setListenersCard() {
