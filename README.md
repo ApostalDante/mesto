@@ -14,16 +14,20 @@
 
 Реализована валидация полей ввода.  
 
+Реализовано через ООП.
+
+Сборка осуществляется Webpack.
+
 В дальнейшем планируется возможность изменять аватар.  
  
 
 
 
-* [Работа на GitHub Pages](https://apostaldante.github.io/mesto/)  
+* [Работа на GitHub Pages] на ПР8 отключена
 
 
 * [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
   
 
 **Desktop**
-![Упс, что-то пошло не так](images/lending.png)  
+![Упс, что-то пошло не так](src/images/lending.png)  
