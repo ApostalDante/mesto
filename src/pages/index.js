@@ -1,6 +1,6 @@
 import '../pages/index.css';
 import Card from '/src/components/Card.js'
-import { initialCards } from '/src/components/cards.js';
+import { initialCards } from '/src/components/utils/cards.js';
 import FormValidator from '/src/components/FormValidator.js';
 import Section from '/src/components/Section.js';
 import Popup from '/src/components/Popup.js';
@@ -17,8 +17,6 @@ const formElementUser = document.querySelector('.form_type_user');
 const formElementCard = document.querySelector('.form_type_card');
 const userNameForm = document.querySelector('.form__input_type_user-name');
 const userMyselForm = document.querySelector('.form__input_type_user-myself');
-const cardNameInput = document.querySelector('.form__input_type_card-name');
-const cardUrlInput = document.querySelector('.form__input_type_card-url');
 const elementContainer = document.querySelector('.elements');
 const options = {
   formSelector: '.form',
@@ -32,9 +30,11 @@ const options = {
 };
 const formValidatorCard = new FormValidator(options, formElementCard);
 const formValidatorUser = new FormValidator(options, formElementUser);
-const userForm = new UserInfo(userNameForm, userMyselForm);
-const popupUser = new Popup(popupUserSelector);
-const popupCard = new Popup(popupCardSelector);
+const userForm = new UserInfo({
+  userNameProfile: 'profile__user-name',
+  userMyselProfile: 'profile__user-myself',
+});
+
 const popupImage = new PopupWithImage(popupImagesSelector);
 const pushElementContainer = new Section({
   items: initialCards,
@@ -45,16 +45,19 @@ const pushElementContainer = new Section({
 }, elementContainer);
 
 const setUserFormProfile = new PopupWithForm(popupUserSelector, {
-  callbackSubmitForm: () => {
-    userForm.setUserInfo();
-    popupUser.close();
+  callbackSubmitForm: (dataUser) => {
+    userForm.setUserInfo({
+      userName: dataUser['user-name'], userMysel: dataUser['user-myself'],
+    });
+    setUserFormProfile.close();
   }
 });
+
 const setCardFormProfile = new PopupWithForm(popupCardSelector, {
-  callbackSubmitForm: () => {
-    const card = new Card({ name: cardNameInput.value, link: cardUrlInput.value }, '#card', handleCardClick);
+  callbackSubmitForm: (dataCard) => {
+    const card = new Card({ name: dataCard['card-name'], link: dataCard['card-url'] }, '#card', handleCardClick);
     pushElementContainer.addItem(card.createCard());
-    popupCard.close();
+    setCardFormProfile.close();
   }
 });
 
@@ -63,15 +66,15 @@ function cleanCardFormValue() {
 };
 
 function openPopupUser() {
-  popupUser.open();
-  popupUser.setEventListeners();
+  setUserFormProfile.open();
+  userNameForm.value = userForm.getUserInfo().userName;
+  userMyselForm.value = userForm.getUserInfo().userMysel;
   userForm.getUserInfo();
   formValidatorUser.resetValidation();
 };
 
 function openPopupCard() {
-  popupCard.open();
-  popupCard.setEventListeners();
+  setCardFormProfile.open();
   cleanCardFormValue();
   formValidatorCard.resetValidation();
 };
@@ -88,8 +91,4 @@ setCardFormProfile.setEventListeners();
 pushElementContainer.renderItems();
 buttonEditProfile.addEventListener('click', () => openPopupUser());
 buttonAddCard.addEventListener('click', () => openPopupCard());
-
-
-
-
 

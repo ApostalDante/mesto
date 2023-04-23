@@ -1,20 +1,20 @@
 class UserInfo {
-  constructor(userName, userMysel) {
-    this._userName = userName;
-    this._userMysel = userMysel;
-    this._userNameProfile = document.querySelector('.profile__user-name');
-    this._userMyselProfile = document.querySelector('.profile__user-myself');
+  constructor({ userNameProfile, userMyselProfile }) {
+    this._userName = document.querySelector(`.${userNameProfile}`);
+    this._userMysel = document.querySelector(`.${userMyselProfile}`);
   };
 
   getUserInfo() {
-    this._userName.value = this._userNameProfile.textContent;
-    this._userMysel.value = this._userMyselProfile.textContent;
+    return {
+      userName: this._userName.textContent,
+      userMysel: this._userMysel.textContent,
+    }
   };
 
-  setUserInfo() {
-    this._userNameProfile.textContent = this._userName.value;
-    this._userMyselProfile.textContent = this._userMysel.value;
-  };
+  setUserInfo({ userName, userMysel }) {
+    this._userName.textContent = userName;
+    this._userMysel.textContent = userMysel;
+  }
 };
 
 export default UserInfo;
