@@ -1,6 +1,6 @@
 import '../pages/index.css';
 import Card from '/src/components/Card.js'
-import { initialCards } from '/src/components/utils/cards.js';
+import { initialCards } from '/src/utils/cards.js';
 import FormValidator from '/src/components/FormValidator.js';
 import Section from '/src/components/Section.js';
 import Popup from '/src/components/Popup.js';
@@ -61,31 +61,26 @@ const setCardFormProfile = new PopupWithForm(popupCardSelector, {
   }
 });
 
-function cleanCardFormValue() {
-  formElementCard.reset();
-};
-
 function openPopupUser() {
+  const userFormValue = userForm.getUserInfo();
   setUserFormProfile.open();
-  userNameForm.value = userForm.getUserInfo().userName;
-  userMyselForm.value = userForm.getUserInfo().userMysel;
-  userForm.getUserInfo();
+  userNameForm.value = userFormValue.userName;
+  userMyselForm.value = userFormValue.userMysel;
   formValidatorUser.resetValidation();
 };
 
 function openPopupCard() {
   setCardFormProfile.open();
-  cleanCardFormValue();
   formValidatorCard.resetValidation();
 };
 
 function handleCardClick(link, title) {
   popupImage.open(link, title);
-  popupImage.setEventListeners();
 };
 
 formValidatorCard.enableValidation();
 formValidatorUser.enableValidation();
+popupImage.setEventListeners();
 setUserFormProfile.setEventListeners();
 setCardFormProfile.setEventListeners();
 pushElementContainer.renderItems();
