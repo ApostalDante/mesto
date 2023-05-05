@@ -1,0 +1,19 @@
+.profile__change-avatar-btm {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  border: none;
+  padding: 0;
+  background-color: transparent;
+}
+
+.profile__change-avatar-btm:hover {
+  background: rgba(0, 0, 0, 0.8);
+  background-image: url("/src/images/edit.svg");
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: 26px 26px;
+}

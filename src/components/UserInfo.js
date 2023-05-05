@@ -1,7 +1,8 @@
 class UserInfo {
-  constructor({ userNameProfile, userMyselProfile }) {
+  constructor({ userNameProfile, userMyselProfile, userAvatarProfile }) {
     this._userName = document.querySelector(`.${userNameProfile}`);
     this._userMysel = document.querySelector(`.${userMyselProfile}`);
+    this._userAvatar = document.querySelector(`.${userAvatarProfile}`);
   };
 
   getUserInfo() {
@@ -14,7 +15,11 @@ class UserInfo {
   setUserInfo({ userName, userMysel }) {
     this._userName.textContent = userName;
     this._userMysel.textContent = userMysel;
-  }
+  };
+
+  setUserAvatar(avatarLink) {
+    this._userAvatar.src = avatarLink;
+  };
 };
 
 export default UserInfo;

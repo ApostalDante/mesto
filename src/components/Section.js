@@ -1,12 +1,11 @@
 class Section {
-  constructor({ items, renderer }, elementContainer) {
-    this._items = items;
+  constructor({ renderer }, elementContainer) {
     this._renderer = renderer;
     this._elementContainer = elementContainer;
   };
 
-  renderItems() {
-    this._items.forEach(this._renderer);
+  renderItems(arrItems) {
+    arrItems.forEach(this._renderer);
   };
 
   addItem(cardElement) {

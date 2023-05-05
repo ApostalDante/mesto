@@ -6,6 +6,8 @@ class PopupWithForm extends Popup {
     this._callbackSubmitForm = callbackSubmitForm;
     this._popupForm = this._popup.querySelector('.form');
     this._popupInputs = Array.from(this._popup.querySelectorAll('.form__input'));
+    this._buttonConfirm = this._popup.querySelector('.form__save');
+    this._buttonConfirmText = this._buttonConfirm.textContent;
   };
 
   _getInputValues() {
@@ -27,6 +29,14 @@ class PopupWithForm extends Popup {
   close() {
     super.close();
     this._popupForm.reset();
+  };
+
+  showProcessSaving() {
+    this._buttonConfirm.textContent = 'Сохранение...';
+  };
+
+  offShowProcessSaving() {
+    this._buttonConfirm.textContent = this._buttonConfirmText;
   };
 };
 
