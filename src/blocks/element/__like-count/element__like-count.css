@@ -1,0 +1,9 @@
+.element__like-count {
+  display: block;
+  margin: 3px 0 0;
+  color: black;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  overflow: hidden;
+}

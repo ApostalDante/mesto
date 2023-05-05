@@ -9,6 +9,8 @@
 
 @import url("/src/blocks/profile/profile.css");
 @import url("/src/blocks/profile/__avatar/profile__avatar.css");
+@import url("/src/blocks/profile/__avatar-img/profile__avatar-img.css");
+@import url("/src/blocks/profile/__change-avatar-btm/profile__change-avatar-btm.css");
 @import url("/src/blocks/profile/__info/profile__info.css");
 @import url("/src/blocks/profile/__user-name/profile__user-name.css");
 @import url("/src/blocks/profile/__user-myself/profile__user-myself.css");
@@ -17,6 +19,8 @@
 
 @import url("/src/blocks/elements/elements.css");
 @import url("/src/blocks/element/element.css");
+@import url("/src/blocks/element/__row/element__row.css");
+@import url("/src/blocks/element/__like-count/element__like-count.css");
 @import url("/src/blocks/element/__trash/element__trash.css");
 @import url("/src/blocks/element/__img/element__img.css");
 @import url("/src/blocks/element/__info/element__info.css");
